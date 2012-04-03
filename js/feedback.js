@@ -28,12 +28,16 @@ var FiveAppsFeedback = function() {
 		})
 		// click on "send feedback"
 		$('#FiveAppsFeedback .FAF_send').bind('click',function(event){
+			// get the actual textarea content 
 			self.controller.addFeedback(document.querySelector('#FiveAppsFeedback textarea').innerHTML)
+			// send all infos to 5Apps
 			self.models.sendFeedback()
+			// done, close the layer and bring the badge back
 			self.controller.close()
 		})
 		// click on cancel
 		$('#FiveAppsFeedback .FAF_cancel').bind('click',function(event){
+			// cancel, closing
 			self.controller.close()
 		})
 		// Star Mouseover
@@ -42,9 +46,13 @@ var FiveAppsFeedback = function() {
 		})
 		// Click on a Star
 		$('#FiveAppsFeedback .FAF_stars span').bind('click',function(event){
+			// get the selected star as voting
 			self.controller.addVote( $(this).attr('data-vote') )
+			// remove all active css-classes from all stars
 			$('#FiveAppsFeedback .FAF_stars span').removeClass('active')
+			// make all stars til the clicked active
 			for(var i = 0; i <= self.vote; i++) {
+				// add css-class "active" to this star
 				$('#FiveAppsFeedback .FAF_stars span[data-vote="'+i+'"]').addClass('active')
 			}
 		})
@@ -56,14 +64,18 @@ var FiveAppsFeedback = function() {
 	self.controller.open = function() {
 		// Append HTML
 		self.views.appendLayer()
+		// listen to all needed events
 		self.events()
+		// kill the badge from the dom
 		self.views.removeBadge()
 	}
 	// Close layer
 	// remove the layer html elements from the DOM
 	// and append the Feedback Badge again
 	self.controller.close = function() {
+		// kill the feedback layer from the dom
 		self.views.removeLayer()
+		// bring the badge back
 		self.views.appendBadge()
 	}
 	// get the actual voting from dom
