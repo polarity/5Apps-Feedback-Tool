@@ -27,6 +27,22 @@
 	font-style: normal;
 	color: #3e3e3e;
 }
+#FiveAppsFeedback .FAF_stars {
+	margin-top: 18px;
+	height: 46px;
+}
+#FiveAppsFeedback .FAF_stars span {
+	cursor: pointer;
+	margin-right: 7px;
+	height: 40px;
+	width:  40px;
+	display: inline-block;
+	background: url(../svg/star.svg) no-repeat -1px;
+	background-size: 40px;
+}
+#FiveAppsFeedback .FAF_stars span.active {
+	background: url(../svg/star_active.svg) no-repeat -1px;
+}
 #FiveAppsFeedback textarea {
 	border: 1px solid #b5b5b5;
 	padding: 9px;
