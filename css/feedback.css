@@ -9,6 +9,46 @@
 	white-space: normal;
 	background-color: none;
 }
+#FiveAppsFeedbackBadge {
+	cursor: pointer;
+	border: 1px solid #c0c0c0;
+	display: inline-block;
+	width: 100px;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	font: normal normal 14px/18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	-moz-box-shadow: 0 -1px 25px #d0d0d0;
+	-webkit-box-shadow: 0 -1px 25px #d0d0d0;
+	box-shadow: 0 -1px 25px #d0d0d0;
+	opacity: 1;
+}
+#FiveAppsFeedbackBadge.top {
+	border-top-style: none;
+	margin-left: -50px;
+	top: 0px;
+	left: 50%;
+}
+#FiveAppsFeedbackBadge.right {
+	border-bottom-style: none;
+	right: -42px;
+	top: 50%;
+	margin-top: -50px;
+	-webkit-transform: rotate(-90deg);
+}
+#FiveAppsFeedbackBadge.left {
+	border-bottom-style: none;
+	left: -42px;
+	top: 50%;
+	margin-top: -50px;
+	-webkit-transform: rotate(90deg);
+}
+#FiveAppsFeedbackBadge.bottom {
+	border-bottom-style: none;
+	margin-left: -50px;
+	bottom: 0px;
+	left: 50%;
+}
 #FiveAppsFeedback {
 	opacity: 0.8;
 	margin: 27px auto;
