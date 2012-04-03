@@ -1,0 +1,69 @@
+#FiveAppsFeedback * {
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+	font: normal normal 14px/18px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	text-transform: none;
+	text-align: left;
+	white-space: normal;
+	background-color: none;
+}
+#FiveAppsFeedback {
+	opacity: 0.8;
+	margin: 27px auto;
+	border: 1px solid #b5b5b5;
+	max-width: 200px;
+	padding: 20px;
+	-moz-box-shadow: 0 3px 20px #bdbdbd;
+	-webkit-box-shadow: 0 3px 20px #bdbdbd;
+	box-shadow: 0 3px 20px #bdbdbd;
+	color: #595959;
+}
+#FiveAppsFeedback h1 {
+	font-size: 18px;
+	font-weight: normal;
+	margin-bottom: 18px;
+	font-style: normal;
+	color: #3e3e3e;
+}
+#FiveAppsFeedback textarea {
+	border: 1px solid #b5b5b5;
+	padding: 9px;
+	color: #7e7e7e;
+	display: block;
+	margin-bottom: 18px;
+	margin-top: 18px;
+	width: 100%;
+	font-size: 12px;
+	line-height: 18px;
+	min-height: 70px;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-shadow: inset 0 -4px 20px #f3f3f3;
+	-webkit-box-shadow: inset 0 -4px 20px #f3f3f3;
+	box-shadow: inset 0 -4px 20px #f3f3f3;
+}
+#FiveAppsFeedback .FAF_button {
+	cursor: pointer;
+	margin-bottom: 0px;
+	display: inline-block;
+	padding: 9px;
+	border: 1px solid #b5b5b5;
+	width: 39%;
+	text-align: center;
+	-moz-box-shadow: 0 2px 5px #cecece;
+	-webkit-box-shadow: 0 2px 5px #cecece;
+	box-shadow: 0 2px 5px #cecece;
+	opacity: 1;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.046, rgb(229, 229, 229)), color-stop(0.615, white), to(#fefefe));
+	background-image: -moz-linear-gradient(90deg, rgb(229, 229, 229) 4.6%, white 61.5%, #fefefe 100%);
+	overflow: hidden;           /* required for text-overflow */
+	text-overflow: ellipsis;    /* for IE and WebKit (Safari, Chrome) */
+	-o-text-overflow: ellipsis;
+}
+#FiveAppsFeedback .FAF_button.FAF_cancel {
+	float: right;
+}

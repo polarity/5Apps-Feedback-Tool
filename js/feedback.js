@@ -44,8 +44,17 @@ var FiveAppsFeedback = function() {
 		}
 	}
 	self.models.sendFeedback = function() {
-		console.log(self.appID+': '+self.vote+': '+self.feedbackString)
+		$.ajax({
+			type: 'GET',
+			url: "http://google.de/",
+			data: {
+				appId: self.appID,
+				vote: self.vote,
+				feedbackString: self.feedbackString
+			}
+		})
 	}
+
 	self.views.appendLayer = function() {
 		self.html = '<div id="FiveAppsFeedback">\
 			<h1>Bewerte Diese App</h1>\
