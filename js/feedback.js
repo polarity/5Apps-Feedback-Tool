@@ -3,13 +3,15 @@
 	The user can type some comments and commit it 
 	back to the developer.
 */
-var FiveAppsFeedback = function() {
+if(typeof FiveApps == 'undefined'){FiveApps = {}}
+FiveApps.Feedback = function() {
 	var self = this
 
 	self.vote = false // Voting Value
 	self.appID = 'IrgendeineAppOderID' // App ID
 	self.feedbackString = false // text string with feedback
 	self.html = false // HTML  String Layer
+	self.bagde = true // shows a badge with event to open a layer
 	self.badgePosition = 'top' // Position of the Badge: top, left, right, bottom
 	self.controller = {}
 	self.models = {}
@@ -24,12 +26,12 @@ var FiveAppsFeedback = function() {
 	self.events = function() {
 		// textarea becomes focused
 		$('#FiveAppsFeedback textarea').bind('focus',function(event){
-			this.innerHTML = ''
+			$(this).html('')
 		})
 		// click on "send feedback"
 		$('#FiveAppsFeedback .FAF_send').bind('click',function(event){
 			// get the actual textarea content 
-			self.controller.addFeedback(document.querySelector('#FiveAppsFeedback textarea').innerHTML)
+			self.controller.addFeedback($('#FiveAppsFeedback textarea').val())
 			// send all infos to 5Apps
 			self.models.sendFeedback()
 			// done, close the layer and bring the badge back
@@ -109,7 +111,7 @@ var FiveAppsFeedback = function() {
 		// define HTML
 		self.html = '<div id="FiveAppsFeedbackBadge" class="'+self.badgePosition+'">Feedback</div>'
 		// put it in before </body>
-		document.querySelector('body').insertAdjacentHTML('beforeend', self.html)
+		$('body').append(self.html)
 		// Click on the Badge
 		$('#FiveAppsFeedbackBadge').bind('click',self.controller.open)
 	}
@@ -122,21 +124,22 @@ var FiveAppsFeedback = function() {
 		self.html = '<div id="FiveAppsFeedback">\
 			<h1>Bewerte Diese App</h1>\
 			<p>Hier kannst Du eine Applikation bewerten und den Entwicklern Feedback geben</p>\
+			<!--\
 			<div class="FAF_stars">\
 				<span class="FAF_star" data-vote="1"></span>\
 				<span class="FAF_star" data-vote="2"></span>\
 				<span class="FAF_star" data-vote="3"></span>\
 				<span class="FAF_star" data-vote="4"></span>\
-			</div>\
+			</div>-->\
 			<textarea>Mein Text....</textarea>\
 			<a class="FAF_button FAF_cancel">Abbrechen</a>\
 			<a class="FAF_button FAF_send">Absenden</a>\
 		</div>';
-		document.querySelector('body').insertAdjacentHTML('beforeend', self.html);
+		$('body').append(self.html)
 	}
 	// removes the layer completly
 	self.views.removeLayer = function() {
-		document.querySelector('body').removeChild(document.getElementById('FiveAppsFeedback'))
+		$('#FiveAppsFeedback').remove()
 	}
 	self.init()
 }

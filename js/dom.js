@@ -1,3 +1,3 @@
 $(function() {
-	var feedback = new FiveAppsFeedback
+	var feedback = new FiveApps.Feedback
 })
