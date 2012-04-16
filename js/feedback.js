@@ -6,17 +6,44 @@
 if(typeof FiveApps == 'undefined'){FiveApps = {}}
 FiveApps.Feedback = function() {
 	var self = this
-
 	self.vote = false // Voting Value
-	self.appID = 'IrgendeineAppOderID' // App ID
+	self.appID = '4f7ad8fac4393415f10001e5' // App ID
+	self.apiEndpoint = 'https://5apps.com/api/feedback/'+self.appID
 	self.feedbackString = false // text string with feedback
 	self.html = false // HTML  String Layer
 	self.bagde = true // shows a badge with event to open a layer
 	self.badgePosition = 'top' // Position of the Badge: top, left, right, bottom
+	self.categories = ["question","suggestion","problem"]
+	self.category = false
 	self.controller = {}
 	self.models = {}
 	self.views = {}
-
+	self.lang = 'de'
+	self.wording = {
+		de: {
+			badge: {
+				text: 'Feedback'
+			},
+			info: {
+				header: 'Bewerte Diese App',
+				desc: 'Hier kannst Du eine Applikation bewerten und den Entwicklern Feedback geben'
+			},
+			buttons: {
+				send: 'Senden',
+				cancel: 'Abbrechen'
+			},
+			response: {
+				success: {
+					header: 'Danke!',
+					desc: 'Deine Bewertung wurde abgesendet!'
+				},
+				error: {
+					header: 'Fehler',
+					desc: 'Deine Bewertung konnte nicht abgesendet werden!'
+				}
+			}
+		}
+	}
 	// Init
 	self.init = function() {
 		self.views.appendBadge()
@@ -32,13 +59,17 @@ FiveApps.Feedback = function() {
 		$('#FiveAppsFeedback .FAF_send').bind('click',function(event){
 			// get the actual textarea content 
 			self.controller.addFeedback($('#FiveAppsFeedback textarea').val())
+			// set category
+			self.category = self.categories[$('#FiveAppsFeedback .FAF_category select').val()]
 			// send all infos to 5Apps
-			self.models.sendFeedback()
-			// done, close the layer and bring the badge back
-			self.controller.close()
+			self.models.sendFeedback(
+				function(){self.views.showResponse(self.wording[self.lang].response.success)},
+				function(){self.views.showResponse(self.wording[self.lang].response.error)}
+			)
+			console.log(self.wording[self.lang].response.err)
 		})
 		// click on cancel
-		$('#FiveAppsFeedback .FAF_cancel').bind('click',function(event){
+		$('#FiveAppsFeedback').on('click','.FAF_cancel',function(event){
 			// cancel, closing
 			self.controller.close()
 		})
@@ -94,14 +125,19 @@ FiveApps.Feedback = function() {
 	}
 
 	// ajax call to 5apps
-	self.models.sendFeedback = function() {
+	self.models.sendFeedback = function(callback, callbackErr) {
 		$.ajax({
-			type: 'GET',
-			url: "http://google.de/",
+			type: 'POST',
+			url: self.apiEndpoint,
 			data: {
-				appId: self.appID,
-				vote: self.vote,
-				feedbackString: self.feedbackString
+				category: self.category,
+				comment: self.feedbackString
+			},
+			success: function(response){
+				if(typeof callback == 'function'){callback(response)}
+			},
+			error: function(response){
+				if(typeof callbackErr == 'function'){callbackErr(response)}
 			}
 		})
 	}
@@ -109,7 +145,7 @@ FiveApps.Feedback = function() {
 	// construct the badge and append it to DOM
 	self.views.appendBadge = function() {
 		// define HTML
-		self.html = '<div id="FiveAppsFeedbackBadge" class="'+self.badgePosition+'">Feedback</div>'
+		self.html = '<div id="FiveAppsFeedbackBadge" class="'+self.badgePosition+'">'+self.wording[self.lang].badge.text+'</div>'
 		// put it in before </body>
 		$('body').append(self.html)
 		// Click on the Badge
@@ -122,8 +158,8 @@ FiveApps.Feedback = function() {
 	// construct the layer and append it to dom
 	self.views.appendLayer = function() {
 		self.html = '<div id="FiveAppsFeedback">\
-			<h1>Bewerte Diese App</h1>\
-			<p>Hier kannst Du eine Applikation bewerten und den Entwicklern Feedback geben</p>\
+			<h1>'+self.wording[self.lang].info.header+'</h1>\
+			<p>'+self.wording[self.lang].info.desc+'</p>\
 			<!--\
 			<div class="FAF_stars">\
 				<span class="FAF_star" data-vote="1"></span>\
@@ -131,12 +167,27 @@ FiveApps.Feedback = function() {
 				<span class="FAF_star" data-vote="3"></span>\
 				<span class="FAF_star" data-vote="4"></span>\
 			</div>-->\
+			<div class="FAF_category">\
+				<select>\
+					<option value="0">Question</option>\
+					<option value="1">Suggestion</option>\
+					<option value="2">Problem</option>\
+				</select>\
+			</div>\
 			<textarea>Mein Text....</textarea>\
-			<a class="FAF_button FAF_cancel">Abbrechen</a>\
-			<a class="FAF_button FAF_send">Absenden</a>\
+			<a class="FAF_button FAF_cancel">'+self.wording[self.lang].buttons.cancel+'</a>\
+			<a class="FAF_button FAF_send">'+self.wording[self.lang].buttons.send+'</a>\
 		</div>';
 		$('body').append(self.html)
 	}
+	// shows a response after the request
+	self.views.showResponse = function(obj) {
+		self.html = '<h1>'+obj.header+'</h1>\
+			<p>'+obj.desc+'</p>\
+			<a class="FAF_button FAF_cancel">Schliessen</a>';
+		$('#FiveAppsFeedback').html(self.html)
+	}
+
 	// removes the layer completly
 	self.views.removeLayer = function() {
 		$('#FiveAppsFeedback').remove()

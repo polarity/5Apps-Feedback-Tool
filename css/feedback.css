@@ -67,6 +67,12 @@
 	font-style: normal;
 	color: #3e3e3e;
 }
+#FiveAppsFeedback p {
+	margin-bottom: 18px;
+}
+#FiveAppsFeedback select {
+	width: 100%;
+}
 #FiveAppsFeedback .FAF_stars {
 	margin-top: 18px;
 	height: 46px;
@@ -122,4 +128,9 @@
 }
 #FiveAppsFeedback .FAF_button.FAF_cancel {
 	float: right;
+}
+#FiveAppsFeedback:after {
+	content: '';
+	clear: both;
+	display: block;
 }
