@@ -86,8 +86,47 @@
 	background: url(../svg/star.svg) no-repeat -1px;
 	background-size: 40px;
 }
+#FiveAppsFeedback .FAF_smileys {
+	margin-top: 18px;
+	height: 46px;
+}
+#FiveAppsFeedback .FAF_smileys span {
+	cursor: pointer;
+	margin-right: 1%;
+	height: 100%;
+	width:  30%;
+	display: inline-block;
+	background-size: 80%;
+}
+#FiveAppsFeedback .FAF_smileys span:nth-child(1){
+	background: url(../svg/smiley-happy.svg) no-repeat center;	
+}
+#FiveAppsFeedback .FAF_smileys span:nth-child(2){
+	background: url(../svg/smiley-neutral.svg) no-repeat center;	
+}
+#FiveAppsFeedback .FAF_smileys span:nth-child(3){
+	background: url(../svg/smiley-sad.svg) no-repeat center;	
+}
 #FiveAppsFeedback .FAF_stars span.active {
 	background: url(../svg/star_active.svg) no-repeat -1px;
+}
+#FiveAppsFeedback input {
+	border: 1px solid #b5b5b5;
+	padding: 9px;
+	color: #7e7e7e;
+	display: block;
+	margin-bottom: 18px;
+	margin-top: 18px;
+	width: 100%;
+	font-size: 12px;
+	line-height: 18px;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-shadow: inset 0 -4px 20px #f3f3f3;
+	-webkit-box-shadow: inset 0 -4px 20px #f3f3f3;
+	box-shadow: inset 0 -4px 20px #f3f3f3;
 }
 #FiveAppsFeedback textarea {
 	border: 1px solid #b5b5b5;

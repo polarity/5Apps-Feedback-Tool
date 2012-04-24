@@ -1,3 +1,3 @@
-$(function() {
-	var feedback = new FiveApps.Feedback
+FiveApps.Zepto(function() {
+	FiveApps.instance.Feedback = new FiveApps.Feedback
 })
