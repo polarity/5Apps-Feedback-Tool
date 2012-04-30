@@ -73,19 +73,6 @@
 #FiveAppsFeedback select {
 	width: 100%;
 }
-#FiveAppsFeedback .FAF_stars {
-	margin-top: 18px;
-	height: 46px;
-}
-#FiveAppsFeedback .FAF_stars span {
-	cursor: pointer;
-	margin-right: 7px;
-	height: 40px;
-	width:  40px;
-	display: inline-block;
-	background: url(../svg/star.svg) no-repeat -1px;
-	background-size: 40px;
-}
 #FiveAppsFeedback .FAF_smileys {
 	margin-top: 18px;
 	height: 46px;
@@ -93,22 +80,24 @@
 #FiveAppsFeedback .FAF_smileys span {
 	cursor: pointer;
 	margin-right: 1%;
+	margin-left: 1%;
 	height: 100%;
 	width:  30%;
 	display: inline-block;
-	background-size: 80%;
+	background-size: 75%;
+	opacity: 0.4;
+}
+#FiveAppsFeedback .FAF_smileys span.active {
+	opacity: 1;
 }
 #FiveAppsFeedback .FAF_smileys span:nth-child(1){
-	background: url(../svg/smiley-happy.svg) no-repeat center;	
+	background: url(../svg/smiley_happy.svg) no-repeat center;	
 }
 #FiveAppsFeedback .FAF_smileys span:nth-child(2){
-	background: url(../svg/smiley-neutral.svg) no-repeat center;	
+	background: url(../svg/smiley_neutral.svg) no-repeat center;	
 }
 #FiveAppsFeedback .FAF_smileys span:nth-child(3){
-	background: url(../svg/smiley-sad.svg) no-repeat center;	
-}
-#FiveAppsFeedback .FAF_stars span.active {
-	background: url(../svg/star_active.svg) no-repeat -1px;
+	background: url(../svg/smiley_sad.svg) no-repeat center;	
 }
 #FiveAppsFeedback input {
 	border: 1px solid #b5b5b5;
